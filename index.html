@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Empowering Technology in Modern Education</title>
+  <meta name="description" content="Advocacy site promoting safe, creative, and empowering use of technology in education." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --deep-blue:#0F2C4F;
+      --deep-blue-2:#123661;
+      --light-green:#58D68D;
+      --light-green-2:#43c57b;
+      --bg:#0b1f38;
+      --card:#112945;
+      --muted:#b7c5d9;
+      --text:#e8f1fb;
+      --ring:#9fe8c0;
+      --shadow: 0 8px 30px rgba(0,0,0,.25);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family: Roboto, Futura, "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+      background: radial-gradient(1200px 800px at 20% -10%, #18406f 0%, transparent 60%),
+                  radial-gradient(1200px 800px at 120% 20%, #0c345e 0%, transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit; text-decoration:none}
+    a:focus-visible{outline:3px solid var(--ring); outline-offset:3px}
+    img{max-width:100%; display:block}
+
+    /* Skip link for a11y */
+    .skip-link{position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden}
+    .skip-link:focus{left:1rem; top:1rem; width:auto; height:auto; padding:.6rem .9rem; background:#fff; color:#000; border-radius:10px}
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter: blur(10px);
+      background: rgba(10, 27, 48, .6);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav{max-width:1100px; margin:0 auto; padding:.6rem 1rem; display:flex; align-items:center; gap:1rem}
+    .brand{display:flex; align-items:center; gap:.6rem; font-weight:700}
+    .brand .logo{width:36px; height:36px; border-radius:10px; background: linear-gradient(135deg, var(--light-green), #9ff0c8); display:grid; place-items:center; box-shadow: var(--shadow)}
+    .brand span{letter-spacing:.3px}
+    .spacer{flex:1}
+    .menu{display:flex; gap:.4rem}
+    .menu a{padding:.55rem .9rem; border-radius:12px; color: #dfeaf8; font-weight:500}
+    .menu a:hover, .menu a:focus{background: rgba(255,255,255,.08); outline:none}
+    .menu a.active{background: rgba(88,214,141,.18); border:1px solid rgba(88,214,141,.4)}
+    .menu-btn{display:none; margin-left:auto; background:transparent; border:1px solid rgba(255,255,255,.2); color:var(--text); padding:.5rem .7rem; border-radius:12px}
+
+    /* Hero */
+    .hero{position:relative; overflow:hidden; isolation:isolate; background:
+        radial-gradient(600px 300px at 15% 30%, rgba(88,214,141,.3), transparent 60%),
+        radial-gradient(600px 300px at 85% 20%, rgba(88,214,141,.2), transparent 60%),
+        linear-gradient(180deg, var(--deep-blue) 0%, rgba(15,44,79,.6) 55%, transparent 100%);
+    }
+    .hero-inner{max-width:1100px; margin:0 auto; padding:72px 1rem 56px; display:grid; grid-template-columns: 1.1fr .9fr; gap:2rem; align-items:center}
+    .hero h1{font-size: clamp(2rem, 1.1rem + 3vw, 3.2rem); line-height:1.1; margin:.4rem 0}
+    .hero p{color:var(--muted); max-width:58ch}
+    .cta{display:flex; gap:.8rem; margin-top:1rem; flex-wrap:wrap}
+    .btn{padding:.9rem 1.1rem; border-radius:14px; font-weight:600; border:none; cursor:pointer}
+    .btn-primary{background:var(--light-green); color:#07281a; box-shadow: var(--shadow)}
+    .btn-primary:hover{background:var(--light-green-2)}
+    .btn-ghost{background:transparent; color:#cfe9ff; border:1px solid rgba(255,255,255,.2)}
+    .btn-ghost:hover{background:rgba(255,255,255,.08)}
+
+    .card{background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius); box-shadow: var(--shadow)}
+
+    /* Sections */
+    section{max-width:1100px; margin:0 auto; padding:64px 1rem}
+    section h2{font-size: clamp(1.4rem, 1rem + 2vw, 2.2rem); margin:0 0 1rem}
+    .muted{color: var(--muted)}
+
+    /* Grids */
+    .grid{display:grid; gap:1rem}
+    .grid-3{grid-template-columns: repeat(3, 1fr)}
+    .grid-2{grid-template-columns: repeat(2, 1fr)}
+    @media (max-width: 900px){
+      .hero-inner{grid-template-columns: 1fr}
+      .grid-3{grid-template-columns: 1fr 1fr}
+    }
+    @media (max-width: 640px){
+      .grid-3, .grid-2{grid-template-columns: 1fr}
+      .menu{display:none}
+      .menu.open{display:flex; flex-direction:column; position:absolute; right:1rem; top:60px; background:#0c2747; border:1px solid rgba(255,255,255,.08); padding:.6rem; border-radius:14px}
+      .menu-btn{display:block}
+    }
+
+    /* Blog cards */
+    .post{padding:1rem}
+    .post h3{margin:.4rem 0}
+    .tag{font-size:.75rem; padding:.25rem .5rem; background: rgba(88,214,141,.18); border:1px solid rgba(88,214,141,.4); color:#bff2d6; border-radius:999px}
+
+    /* Video */
+    .video{aspect-ratio:16/9; width:100%; border:0; border-radius:14px}
+
+    /* Resource list */
+    .list{list-style:none; padding:0; margin:0; display:grid; gap:.6rem}
+    .list li{padding:1rem; border-radius:12px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08)}
+
+    /* Events */
+    .event{display:flex; gap:1rem; align-items:flex-start; padding:1rem}
+    .date{min-width:72px; text-align:center; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:.6rem}
+    .date .day{font-size:1.4rem; font-weight:800}
+    .date .mon{font-weight:600; color:#c1ffd8}
+
+    /* Forms */
+    form{display:grid; gap:.7rem}
+    input, textarea{width:100%; padding:.8rem 1rem; border-radius:12px; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.06); color:var(--text)}
+    input:focus, textarea:focus{outline:2px solid var(--ring); box-shadow:0 0 0 4px rgba(159,232,192,.2)}
+    label{font-weight:600}
+
+    /* Footer */
+    footer{border-top:1px solid rgba(255,255,255,.08); padding:32px 1rem; color:#c7d6ea; background: rgba(0,0,0,.15)}
+    .footer-inner{max-width:1100px; margin:0 auto; display:grid; gap:1rem; grid-template-columns: 2fr 1fr}
+    .copyright{color:#9fb2cc}
+    @media (max-width: 800px){.footer-inner{grid-template-columns:1fr}}
+
+    /* Motion preference */
+    @media (prefers-reduced-motion: reduce){ *{animation:none!important; transition:none!important} }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header role="banner" aria-label="Main navigation">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="#home" aria-label="Go to home">
+        <span class="logo" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 12a8 8 0 1 1 16 0v6a2 2 0 0 1-2 2h-4l-2 2-2-2H6a2 2 0 0 1-2-2v-6z" stroke="#073a24" stroke-width="1.6" fill="#9ff0c8"/>
+          </svg>
+        </span>
+        <span>Empowering Tech</span>
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuList">Menu</button>
+      <div class="spacer"></div>
+      <div class="menu" id="menuList">
+        <a href="#about">About</a>
+        <a href="#blog">Blog</a>
+        <a href="#videos">Videos</a>
+        <a href="#resources">Resources</a>
+        <a href="#events">Events</a>
+        <a href="#get-involved">Get Involved</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home" aria-label="Hero banner">
+    <div class="hero-inner">
+      <div>
+        <p class="tag" aria-label="site tagline">ICT • Digital Literacy • Safe & Creative Tech</p>
+        <h1>Empowering Technology in Modern Education</h1>
+        <p>We promote safe, productive, and empowering technology practices for students and teachers. Explore resources, tutorials, and stories that make ICT skills practical and inspiring.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#resources" aria-label="View resources">Explore Resources</a>
+          <a class="btn btn-ghost" href="#blog" aria-label="Read the blog">Read the Blog</a>
+        </div>
+      </div>
+      <div class="card" style="padding:1rem;">
+        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1200&auto=format&fit=crop" alt="Abstract aesthetic tech workspace with laptop and neon green lights" style="border-radius:14px;">
+        <p class="muted" style="margin:.6rem 0 0">Aesthetic design: minimal, youth‑friendly visuals with soft gradients and abstract tech patterns.</p>
+      </div>
+    </div>
+  </section>
+
+  <main id="main">
+    <!-- ABOUT -->
+    <section id="about" aria-labelledby="about-h2">
+      <h2 id="about-h2">About Us</h2>
+      <p class="muted">Our mission is to raise awareness on responsible and creative use of technology, provide accessible ICT learning resources, and build an engaging platform that promotes safe, productive, and empowering tech practices.</p>
+      <div class="grid grid-3">
+        <div class="card post">
+          <h3>Mission</h3>
+          <p>Empower students and teachers through practical ICT skills, inclusive digital literacy, and advocacy for safe online behavior.</p>
+        </div>
+        <div class="card post">
+          <h3>Team</h3>
+          <p>Designers, illustrators, content creators, and promoters collaborating to build a modern, aesthetic learning hub.</p>
+        </div>
+        <div class="card post">
+          <h3>Impact</h3>
+          <p>Interactive tutorials, classroom tips, and community stories that improve learning experiences and accessibility.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG -->
+    <section id="blog" aria-labelledby="blog-h2">
+      <h2 id="blog-h2">Latest Blog Posts</h2>
+      <div class="grid grid-3">
+        <article class="card post" aria-labelledby="p1">
+          <span class="tag">Cyber Safety</span>
+          <h3 id="p1">5 Ways to Spot Phishing</h3>
+          <p class="muted">Quick checks students can do before clicking links or sharing info online.</p>
+          <a class="btn btn-ghost" href="#">Read</a>
+        </article>
+        <article class="card post" aria-labelledby="p2">
+          <span class="tag">ICT Hacks</span>
+          <h3 id="p2">PowerPoint in 30 Seconds</h3>
+          <p class="muted">3 hacks to level‑up your slides fast—great for class reports.</p>
+          <a class="btn btn-ghost" href="#">Read</a>
+        </article>
+        <article class="card post" aria-labelledby="p3">
+          <span class="tag">Student Voices</span>
+          <h3 id="p3">How Tech Helped My Study Habits</h3>
+          <p class="muted">A short reflection on apps and routines that actually work.</p>
+          <a class="btn btn-ghost" href="#">Read</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section id="videos" aria-labelledby="videos-h2">
+      <h2 id="videos-h2">Videos & Tutorials</h2>
+      <div class="grid grid-2">
+        <div class="card" style="padding:1rem;">
+          <iframe class="video" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Tutorial video placeholder" allowfullscreen></iframe>
+        </div>
+        <div class="card post">
+          <h3>Vlog Series: Tech Tips in 60 Seconds</h3>
+          <p class="muted">Short, engaging videos on digital literacy, cyber safety, and productivity tools.</p>
+          <ul class="list">
+            <li>How to format Google Docs like a pro</li>
+            <li>Cleaning up your digital footprint</li>
+            <li>Fast note‑taking with keyboard shortcuts</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESOURCES -->
+    <section id="resources" aria-labelledby="resources-h2">
+      <h2 id="resources-h2">Resources</h2>
+      <div class="grid grid-3">
+        <a class="card post" href="#">
+          <h3>Teacher Toolkit</h3>
+          <p class="muted">Downloadable lesson plans and classroom tech integration tips.</p>
+        </a>
+        <a class="card post" href="#">
+          <h3>Student Guides</h3>
+          <p class="muted">Quick guides for research, slide design, and safe online habits.</p>
+        </a>
+        <a class="card post" href="#">
+          <h3>Advocacy Kit</h3>
+          <p class="muted">Run a #TechForLearning campaign in your community.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section id="events" aria-labelledby="events-h2">
+      <h2 id="events-h2">Events</h2>
+      <div class="grid grid-2">
+        <div class="card event">
+          <div class="date"><div class="day">12</div><div class="mon">SEP</div></div>
+          <div>
+            <h3>Webinar: Online Tech Safety Week</h3>
+            <p class="muted">Tips and activities to build safe digital habits across SHS classes.</p>
+          </div>
+        </div>
+        <div class="card event">
+          <div class="date"><div class="day">28</div><div class="mon">SEP</div></div>
+          <div>
+            <h3>Workshop: Future‑Ready ICT Skills</h3>
+            <p class="muted">Hands‑on walkthrough of useful tools for research and presentations.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GET INVOLVED -->
+    <section id="get-involved" aria-labelledby="get-h2">
+      <h2 id="get-h2">Get Involved</h2>
+      <div class="grid grid-3">
+        <div class="card post">
+          <h3>Volunteer</h3>
+          <p class="muted">Join content writing, illustration, or social media promo tasks.</p>
+          <a class="btn btn-primary" href="#contact">Sign Up</a>
+        </div>
+        <div class="card post">
+          <h3>Community Forum</h3>
+          <p class="muted">Share experiences and ask questions about ICT tools and study hacks.</p>
+          <a class="btn btn-ghost" href="#">Enter Forum</a>
+        </div>
+        <div class="card post">
+          <h3>Feedback</h3>
+          <p class="muted">Tell us what topics you want next; help improve the site.</p>
+          <a class="btn btn-ghost" href="#contact">Send Feedback</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contact-h2">
+      <h2 id="contact-h2">Contact Us</h2>
+      <div class="grid grid-2">
+        <form class="card" aria-label="Contact form" onsubmit="event.preventDefault(); alert('Thanks! This is a demo form.');" style="padding:1rem;">
+          <label for="name">Name</label>
+          <input id="name" name="name" placeholder="Your name" required />
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required />
+          <label for="msg">Message</label>
+          <textarea id="msg" name="message" rows="4" placeholder="How can we help?" required></textarea>
+          <button class="btn btn-primary" type="submit">Send Message</button>
+          <p class="muted" style="margin:.6rem 0 0">We respect your privacy and follow the Data Privacy Act (RA 10173).</p>
+        </form>
+        <div class="card post">
+          <h3>Newsletter</h3>
+          <p class="muted">Get monthly tech tips, tutorials, and event updates.</p>
+          <form onsubmit="event.preventDefault(); alert('Subscribed! This is a demo.');">
+            <label for="sub">Email</label>
+            <input id="sub" type="email" placeholder="you@example.com" required />
+            <button class="btn btn-ghost" type="submit" style="margin-top:.6rem">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <div>
+        <strong>Empowering Tech</strong>
+        <p class="muted">A student‑led advocacy promoting safe, creative, and empowering technology practices for education.</p>
+      </div>
+      <div>
+        <p class="copyright">© <span id="year"></span> Maximo Estrella Senior High • Built with a green & blue aesthetic</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const menuList = document.getElementById('menuList');
+    menuBtn?.addEventListener('click', () => {
+      const isOpen = menuList.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Active link highlight based on scroll position
+    const links = [...document.querySelectorAll('.menu a')];
+    const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const onScroll = () => {
+      const y = window.scrollY + 120; // offset for sticky header
+      let activeIndex = 0;
+      sections.forEach((sec, i) => { if (sec.offsetTop <= y) activeIndex = i; });
+      links.forEach((a,i)=> a.classList.toggle('active', i===activeIndex));
+    };
+    document.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
